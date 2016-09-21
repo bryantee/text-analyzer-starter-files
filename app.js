@@ -7,7 +7,14 @@ function countTotalWords(text) {
 }
 
 function countUniqueWords(text) {
-
+    var uniqueWords = [];
+    // Itterate over 'text' array and if word not in uniqueWords then push
+    for (var i=0; i < text.length; i++) {
+        if (uniqueWords.indexOf(text[i]) < 0 ) {
+          uniqueWords.push(text[i]);
+        }
+    }
+    return uniqueWords.length;
 }
 
 function calculateAverageWordLength(text) {
