@@ -19,7 +19,7 @@ function countUniqueWords(text) {
 
 function calculateAverageWordLength(text, originalText) {
     var totalWords = countTotalWords(text);
-    var totalChars = stripExtras(originalText).length;
+    var totalChars = calculateTotalChars(originalText);
     return totalChars / totalWords;
 }
 
@@ -36,4 +36,7 @@ function tokenizeText(text) {
 function stripExtras(text) {
     // strips out everything except whitespace, numbers or letters
     return text.replace(/[^\w\s]|_/g, "");
+}
+function calculateTotalChars(stringText) {
+    return stripExtras(stringText).length;
 }
