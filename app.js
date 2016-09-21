@@ -23,8 +23,10 @@ function calculateAverageWordLength(text, originalText) {
     return totalChars / totalWords;
 }
 
-function calculateAverageSentenceLength(text) {
-
+function calculateAverageSentenceLength(originalText) {
+    var totalChars = calculateTotalChars(originalText);
+    var totalSentences = removeReturns(originalText).split(/[!.?]+/).filter(Boolean).length;
+    return totalChars / totalSentences;
 }
 
 function tokenizeText(text) {
@@ -37,6 +39,13 @@ function stripExtras(text) {
     // strips out everything except whitespace, numbers or letters
     return text.replace(/[^\w\s]|_/g, "");
 }
+
+function removeReturns(stringText) {
+    // helper function for calculateAverageSentenceLength
+    // keep sentence puntuation to determine.
+    return stringText.replace(/\r?\n|\r/g, "");
+}
+
 function calculateTotalChars(stringText) {
     return stripExtras(stringText).length;
 }
