@@ -17,8 +17,10 @@ function countUniqueWords(text) {
     return uniqueWords.length;
 }
 
-function calculateAverageWordLength(text) {
-
+function calculateAverageWordLength(text, originalText) {
+    var totalWords = countTotalWords(text);
+    var totalChars = stripExtras(originalText).length;
+    return totalChars / totalWords;
 }
 
 function calculateAverageSentenceLength(text) {
@@ -27,6 +29,7 @@ function calculateAverageSentenceLength(text) {
 
 function tokenizeText(text) {
     // split words into array and sort
+    // Shamelessly borrowed from thinkful solution
     return text.toLowerCase().split(/[\s]+/).filter(Boolean).sort();
 }
 
