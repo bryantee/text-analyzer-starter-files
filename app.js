@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function countTotalWords(text) {
-
+    return text.length;
 }
 
 function countUniqueWords(text) {
