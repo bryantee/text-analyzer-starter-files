@@ -1,6 +1,20 @@
 $(document).ready(function() {
-
+    $('button').on('click', function(e) {
+      e.preventDefault();
+      var rawText = $('#user-text').val();
+      var sanitizedText = stripExtras(rawText);
+      var tokenText = tokenizeText(sanitizedText);
+      report(tokenText, rawText);
+    });
 });
+
+function report(text, originalText) {
+    $('.text-report').removeClass('hidden');  // make report area visible
+    $('.word-count').text(countTotalWords(text));
+    $('.unique-word-count').text(countUniqueWords(text));
+    $('.avg-word-length').text(calculateAverageWordLength(text, originalText) + " characters");
+    $('.avg-sentence-length').text(calculateAverageSentenceLength(originalText) + " characters");
+}
 
 function countTotalWords(text) {
     return text.length;
@@ -9,6 +23,7 @@ function countTotalWords(text) {
 function countUniqueWords(text) {
     var uniqueWords = [];
     // Itterate over 'text' array and if word not in uniqueWords then push
+    // TODO: Refactor using .map() or other array method
     for (var i=0; i < text.length; i++) {
         if (uniqueWords.indexOf(text[i]) < 0 ) {
           uniqueWords.push(text[i]);
